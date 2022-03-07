@@ -8,7 +8,7 @@
 	<!-- 1.配置数据库相关参数properties的属性：${url} -->
 	<context:property-placeholder location="classpath:dbconfig.properties"  ignore-unresolvable="true"/>
 	<!-- 配置redisproperties属性 -->
-	<context:property-placeholder location="classpath:redis.properties"  ignore-unresolvable="true"/>
+<!--	<context:property-placeholder location="classpath:redis.properties"  ignore-unresolvable="true"/>-->
 
 	<!-- 2.数据库连接池 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -29,24 +29,24 @@
 		<property name="acquireRetryAttempts" value="2" />
 	</bean>
 
-	<!-- redis数据源 -->
-	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-		<property name="maxIdle" value="${redis.maxIdle}" />
-		<property name="maxTotal" value="${redis.maxActive}" />
-		<property name="maxWaitMillis" value="${redis.maxWait}" />
-		<property name="testOnBorrow" value="${redis.testOnBorrow}" />
-	</bean>
+<!--	&lt;!&ndash; redis数据源 &ndash;&gt;-->
+<!--	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">-->
+<!--		<property name="maxIdle" value="${redis.maxIdle}" />-->
+<!--		<property name="maxTotal" value="${redis.maxActive}" />-->
+<!--		<property name="maxWaitMillis" value="${redis.maxWait}" />-->
+<!--		<property name="testOnBorrow" value="${redis.testOnBorrow}" />-->
+<!--	</bean>-->
 
-	<!-- Spring-redis连接池管理工厂 -->
-	<bean id="jedisConnectionFactory"
-		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:host-name="${redis.host}" p:port="${redis.port}"
-		p:pool-config-ref="poolConfig" />
-	<!-- 使用中间类解决RedisCache.jedisConnectionFactory的静态注入，从而使MyBatis实现第三方缓存 -->
-	<bean id="redisCacheTransfer" class="com.yxq.carpark.utils.RedisCacheTransfer">
-		<property name="jedisConnectionFactory" ref="jedisConnectionFactory" />
-	</bean>
-	
+<!--	&lt;!&ndash; Spring-redis连接池管理工厂 &ndash;&gt;-->
+<!--	<bean id="jedisConnectionFactory"-->
+<!--		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"-->
+<!--		p:host-name="${redis.host}" p:port="${redis.port}"-->
+<!--		p:pool-config-ref="poolConfig" />-->
+<!--	&lt;!&ndash; 使用中间类解决RedisCache.jedisConnectionFactory的静态注入，从而使MyBatis实现第三方缓存 &ndash;&gt;-->
+<!--	<bean id="redisCacheTransfer" class="com.yxq.carpark.utils.RedisCacheTransfer">-->
+<!--		<property name="jedisConnectionFactory" ref="jedisConnectionFactory" />-->
+<!--	</bean>-->
+<!--	-->
 
 
 	<!-- 3.配置SqlSessionFactory对象 -->
