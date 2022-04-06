@@ -62,7 +62,7 @@ public class CheckController {
 	@RequestMapping("/index/check/checkIn")
 	@ResponseBody
 	@Transactional
-	// Èë¿â²Ù×÷
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Msg checkIn(Model model, FormData data) {
 		Depotcard depotcard=depotcardService.findByCardnum(data.getCardNum());
 		if(data.getParkTem()!=1)
@@ -71,10 +71,10 @@ public class CheckController {
 		{
 			if(depotcard.getIslose()==1)
 			{
-				return Msg.fail().add("va_msg", "¸Ã¿¨ÒÑ¹ÒÊ§£¡");
+				return Msg.fail().add("va_msg", "ï¿½Ã¿ï¿½ï¿½Ñ¹ï¿½Ê§ï¿½ï¿½");
 			}
 		}else{
-			return Msg.fail().add("va_msg", "¸Ã¿¨²»´æÔÚ£¡");
+			return Msg.fail().add("va_msg", "ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½");
 		}
 		}
 		parkinfoservice.saveParkinfo(data);
@@ -84,8 +84,7 @@ public class CheckController {
 
 	@RequestMapping("/index/check/checkOut")
 	@ResponseBody
-	@Transactional
-	// ³ö¿â²Ù×÷£¨0¿Û·Ñ£¬1²»ÓÃ¿Û·Ñ£¬9¸¶Ç®£©
+//	@Transactional
 	public Msg checkOut(Model model, FormData data) {
 		int pay_money=data.getPay_money();
 		Date parkout=new Date();
@@ -127,10 +126,10 @@ public class CheckController {
 		}else{
 			if(data.getPay_type()==9)
 			{
-				return Msg.fail().add("va_msg", "ÏµÍ³³ö´í£¡");
+				return Msg.fail().add("va_msg", "ç³»ç»Ÿå‡ºé”™");
 			}else if(data.getPay_type()==0)
 			{
-				//Õı³£¿Û·Ñ£¬ÔÂ¿¨»òÄê¿¨¹ıÆÚ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Û·Ñ£ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ê¿¨ï¿½ï¿½ï¿½ï¿½
 				Depotcard depotcard=depotcardService.findByCardnum(data.getCardNum());
 				IllegalInfo illegalInfo=illegalInfoService.findByCardnumParkin(data.getCardNum(),parkInfo.getParkin());
 				double money=depotcard.getMoney();
@@ -164,7 +163,7 @@ public class CheckController {
 				income.setTrueincome(1);
 				incomeService.save(income);*/
 			}else{
-				//ÔÂ¿¨»òÄê¿¨ÔÚÆÚ
+				//ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ê¿¨ï¿½ï¿½ï¿½ï¿½
 			}
 		}
 		parkinfoall.setCardnum(parkInfo.getCardnum());
@@ -181,7 +180,7 @@ public class CheckController {
 
 	@RequestMapping("/index/check/findParkinfoByParknum")
 	@ResponseBody
-	// ¸ù¾İÍ£³µÎ»ºÅ²éÕÒÍ£³µÎ»ĞÅÏ¢
+	// ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Î»ï¿½Å²ï¿½ï¿½ï¿½Í£ï¿½ï¿½Î»ï¿½ï¿½Ï¢
 	public Msg findParkinfoByParknum(@RequestParam("parkNum") int parknum) {
 		ParkInfo parkInfo = parkinfoservice.findParkinfoByParknum(parknum);
 		return Msg.success().add("parkInfo", parkInfo);
@@ -189,7 +188,7 @@ public class CheckController {
 	
 	@RequestMapping("/index/check/findParkinfoByCardnum")
 	@ResponseBody
-	// ¸ù¾İÍ£³µÎ»ºÅ/³µÅÆºÅ²éÕÒÍ£³µÎ»ĞÅÏ¢
+	// ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Î»ï¿½ï¿½/ï¿½ï¿½ï¿½ÆºÅ²ï¿½ï¿½ï¿½Í£ï¿½ï¿½Î»ï¿½ï¿½Ï¢
 	public Msg findParkinfoByCardnum(@RequestParam("cardnum") String cardnum) {
 		ParkInfo parkInfo = parkinfoservice.findParkinfoByCardnum(cardnum);
 		//System.out.println("ello"+parkInfo.getId());
@@ -202,7 +201,7 @@ public class CheckController {
 	
 	@RequestMapping("/index/check/findParkinfoDetailByParknum")
 	@ResponseBody
-	//¸ù¾İÍ£³µÎ»ºÅ²éÕÒÍ£³µÏêÏ¸ĞÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Î»ï¿½Å²ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢
 	public Msg findParkinfoDetailByParknum(@RequestParam("parkNum") int parknum)
 	{
 		ParkInfo parkInfo = parkinfoservice.findParkinfoByParknum(parknum);
@@ -228,7 +227,7 @@ public class CheckController {
 	
 	@RequestMapping("/index/check/illegalSubmit")
 	@ResponseBody
-	//Î¥¹æÌá½»
+	//Î¥ï¿½ï¿½ï¿½á½»
 	public Msg illegalSubmit(FormData data,HttpSession httpSession)
 	{
 		User currentUser=(User) httpSession.getAttribute("user");
@@ -239,7 +238,7 @@ public class CheckController {
 		IllegalInfo illegalInfo=illegalInfoService.findByCardnumParkin(data.getCardNum(),parkInfo.getParkin());
 		if(illegalInfo!=null)
 		{
-			return Msg.fail().add("va_msg", "Ìí¼ÓÊ§°Ü,ÒÑ¾­ÓĞÎ¥¹æ£¡");
+			return Msg.fail().add("va_msg", "ï¿½ï¿½ï¿½Ê§ï¿½ï¿½,ï¿½Ñ¾ï¿½ï¿½ï¿½Î¥ï¿½æ£¡");
 		}
 		info.setCardnum(data.getCardNum());
 		info.setCarnum(data.getCarNum());
@@ -279,14 +278,14 @@ public class CheckController {
 		
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Msg.fail().add("va_msg", "Ìí¼ÓÊ§°Ü");
+			return Msg.fail().add("va_msg", "ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 		}
-		return Msg.success().add("va_msg", "Ìí¼Ó³É¹¦");
+		return Msg.success().add("va_msg", "ï¿½ï¿½Ó³É¹ï¿½");
 	}
 	
-	/*ÊÇ·ñĞèÒªÖ§¸¶
-	 * type:0ÊÇÕı³£¿Û·Ñ
-	 * type:1ÊÇÔÂ¿¨Äê¿¨Ã»µ½ÆÚ*/
+	/*ï¿½Ç·ï¿½ï¿½ï¿½ÒªÖ§ï¿½ï¿½
+	 * type:0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û·ï¿½
+	 * type:1ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ê¿¨Ã»ï¿½ï¿½ï¿½ï¿½*/
 	@RequestMapping("/index/check/ispay")
 	@ResponseBody
 	public Msg ispay(@RequestParam("parknum") Integer parknum)
@@ -297,12 +296,12 @@ public class CheckController {
 		long time=0;
 		long day=0;
 		int illegalmoney=0;
-		//ÁÙÊ±Í£³µ£¨10¿é£©
+		//ï¿½ï¿½Ê±Í£ï¿½ï¿½ï¿½ï¿½10ï¿½é£©
 		if(parkInfo==null)
 		{
 			return Msg.fail().add("type", 9);
 		}
-		//ÊÇ·ñÓĞÎ¥¹æĞèÒª½É·Ñ
+		//ï¿½Ç·ï¿½ï¿½ï¿½Î¥ï¿½ï¿½ï¿½ï¿½Òªï¿½É·ï¿½
 		IllegalInfo illegalInfo=illegalInfoService.findByCarnum(parkInfo.getCarnum(),parkInfo.getParkin());
 		if(illegalInfo!=null)
 		{
@@ -310,21 +309,21 @@ public class CheckController {
 		}
 		if(StringUtils.isEmpty(parkInfo.getCardnum()))
 		{
-			//ĞèÒªÏÖ½ğ»òÉ¨ÂëÖ§¸¶,1Ğ¡Ê±10¿é
+			//ï¿½ï¿½Òªï¿½Ö½ï¿½ï¿½É¨ï¿½ï¿½Ö§ï¿½ï¿½,1Ğ¡Ê±10ï¿½ï¿½
 			parkin=parkInfo.getParkin();
 			day=date.getTime()-parkin.getTime();
 			time=day/(1000*60*60);
 			if(day%(1000*60*60)>0){
 			time+=1;
 			}
-			return Msg.success().add("money_pay", time*Constants.TEMPMONEY+illegalmoney).add("va_msg", "ÁÙÊ±Í£³µ"+(illegalmoney>0? ",ÓĞÎ¥¹æ£º"+illegalInfo.getIllegalInfo():""));
+			return Msg.success().add("money_pay", time*Constants.TEMPMONEY+illegalmoney).add("va_msg", "ä¸´æ—¶åœè½¦"+(illegalmoney>0? ",æœ‰è¿è§„"+illegalInfo.getIllegalInfo():""));
 		}
 		String cardnum=parkInfo.getCardnum();
 		Depotcard depotcard=depotcardService.findByCardnum(cardnum);
-		//Õı³£¿¨£¨8¿é£©
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½8ï¿½é£©
 		if(depotcard!=null&&depotcard.getType()==1)
 		{
-			//¿¨ÖĞÓà¶î
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			double balance=depotcard.getMoney();
 			int money=0;
 			List<CouponData> coupons=couponService.findAllCouponByCardNum(cardnum, "");
@@ -340,7 +339,7 @@ public class CheckController {
 			}
 			if(balance+money-illegalmoney<time*Constants.HOURMONEY)
 			{
-			return Msg.success().add("money_pay", time*Constants.HOURMONEY+illegalmoney-money-balance).add("va_msg", "Óà¶î²»×ã"+(illegalmoney>0? ",ÓĞÎ¥¹æ£º"+illegalInfo.getIllegalInfo():""));
+			return Msg.success().add("money_pay", time*Constants.HOURMONEY+illegalmoney-money-balance).add("va_msg", "ä½™é¢ä¸è¶³"+(illegalmoney>0? ",æœ‰è¿è§„"+illegalInfo.getIllegalInfo():""));
 			}else{
 			return Msg.fail().add("type", 0).add("money_pay", time*Constants.HOURMONEY+illegalmoney-money);
 			}
@@ -350,19 +349,19 @@ public class CheckController {
 		{
 		day=date.getTime()-deductedtime.getTime();
 		}
-		if(depotcard.getType()==3){
+		if(depotcard.getType()==2){
 			time=day/(1000*60*60*24*30);
 		}
-		if(depotcard.getType()==4){
+		if(depotcard.getType()==3){
 			time=day/(1000*60*60*24*365);
 		}
-		//Èç¹ûÔÂ¿¨»òÄê¿¨Ã»µ½ÆÚ£¬Ö±½Ó³ö¿â
+		//ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ê¿¨Ã»ï¿½ï¿½ï¿½Ú£ï¿½Ö±ï¿½Ó³ï¿½ï¿½ï¿½
 		if(time<1)
 		{
-			return Msg.fail().add("type", 1);
+			return Msg.fail().add("type", 1).add("money_pay", 0);
 		}else{
-			//·ñÔò²é¿´Í£³µ¿¨Óà¶îÊÇ·ñ×ã¹»¿Û·Ñ£¬²»¹»ÔòĞèÒªÏÖ½ğ»òÉ¨Âë
-			//¿¨ÖĞÓà¶î
+			//ï¿½ï¿½ï¿½ï¿½é¿´Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ã¹»ï¿½Û·Ñ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ö½ï¿½ï¿½É¨ï¿½ï¿½
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			double balance=depotcard.getMoney();
 			int money=0;
 			List<CouponData> coupons=couponService.findAllCouponByCardNum(cardnum, "");
@@ -378,9 +377,9 @@ public class CheckController {
 			}
 			if(balance+money-illegalmoney<time*Constants.HOURMONEY)
 			{
-			return Msg.success().add("money_pay", time*Constants.HOURMONEY+illegalmoney-money-balance).add("va_msg", "Óà¶î²»×ã"+(illegalmoney>0? ",ÓĞÎ¥¹æ£º"+illegalInfo.getIllegalInfo():""));
+			return Msg.success().add("money_pay", time*Constants.HOURMONEY+illegalmoney-money-balance).add("va_msg", "ä½™é¢ä¸è¶³"+(illegalmoney>0? ",æœ‰è¿è§„"+illegalInfo.getIllegalInfo():""));
 			}else{
-			return Msg.fail().add("type", 0);
+			return Msg.fail().add("type", 0).add("money_pay", 0);
 			}
 		}
 	}
